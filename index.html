@@ -1,73 +1,91 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Index</title>
+  <title>Admin - Venta de Boletos (Round Robin)</title>
   <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
-
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
-
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
-
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
+  <meta name="theme-color" content="#27293d">
 </head>
 
 <body>
-<div class="container">
-  <h1>Ticket Shop</h1>
-  <p>
-    Fila virtual activa.
-  </p>
+<main class="admin-dashboard">
+  <nav class="top-navbar">
+    <span class="welcome-text">Bienvenido, <strong>Admin</strong></span>
+    <img src="img/Gato.jpg" alt="Perfil Admin" class="profile-pic">
+  </nav>
+  <header class="dashboard-header">
+    <h1>Panel de Administración: Taquilla Virtual</h1>
+    <div class="status-indicator">Sistema Activo 🔴</div>
+  </header>
 
-  <table id="processTable">
-    <thead>
-    <tr>
-      <th>ID Proceso</th>
-      <th>Ráfaga (BT)</th>
-      <th>Prioridad</th>
-      <th class="resultado-header">T. Retorno ($T_r$)</th>
-      <th class="resultado-header">T. Espera ($T_w$)</th>
-    </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+  <div class="dashboard-content">
+    <section class="current-client-panel">
+      <h2>Atendiendo en Ventanilla</h2>
+      <div class="client-card">
+        <div class="client-info">
+          <span class="client-id">ID: Cliente-001</span>
+          <span class="client-intent">Intención de compra: 5 boletos</span>
+        </div>
+        <div class="quantum-timer">
+          Tiempo restante: <strong>3s</strong>
+        </div>
+      </div>
+    </section>
 
-  <div class="gantt-wrapper">
-    <h2>Ejecución en Tiempo Real (Diagrama de Gantt)</h2>
-    <div class="gantt-container" id="ganttChart">
-      <span class="gantt-time-marker" style="left: 0;">0</span>
-    </div>
+    <section class="queue-section">
+      <h2>Fila de Espera</h2>
+      <div class="table-container">
+        <table id="queueTable">
+          <thead>
+          <tr>
+            <th>Lugar en Fila</th>
+            <th>ID Cliente</th>
+            <th>Boletos Restantes por Comprar</th>
+            <th>Estado</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>1</td>
+            <td>Cliente-002</td>
+            <td>2</td>
+            <td><span class="status waiting">Esperando</span></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Cliente-003</td>
+            <td>8</td>
+            <td><span class="status waiting">Esperando</span></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Cliente-004</td>
+            <td>4</td>
+            <td><span class="status waiting">Esperando</span></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Cliente-005</td>
+            <td>1</td>
+            <td><span class="status waiting">Esperando</span></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Cliente-001</td>
+            <td>2</td>
+            <td><span class="status returned">Regresó a cola</span></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </div>
+</main>
+</body>
 
-  <div class="metrics-summary" id="finalMetrics" style="display: none;">
-    <h3>Resultado Promedio del Lote</h3>
-    <p>Tiempo de Retorno Promedio: <strong id="avgTr"></strong> unidades.</p>
-    <p>Tiempo de Espera Promedio: <strong id="avgTw"></strong>unidades.</p>
-  </div>
-</div>
-<script src="js/app.js"></script>
-
-<div>
-  <footer>
-    <a href="https://jigsaw.w3.org/css-validator/check/referer">
-      <img style="border:0;width:88px;height:31px"
-           src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
-           alt="¡CSS Válido!" />
-    </a>
-  </footer>
-</div>
-
+</html>
 
 
 </body>
