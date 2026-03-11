@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>Index</title>
   <link rel="stylesheet" href="css/style.css">
   <meta name="description" content="">
 
@@ -23,10 +23,52 @@
 </head>
 
 <body>
+<div class="container">
+  <h1>Ticket Shop</h1>
+  <p>
+    Fila virtual activa.
+  </p>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+  <table id="processTable">
+    <thead>
+    <tr>
+      <th>ID Proceso</th>
+      <th>Ráfaga (BT)</th>
+      <th>Prioridad</th>
+      <th class="resultado-header">T. Retorno ($T_r$)</th>
+      <th class="resultado-header">T. Espera ($T_w$)</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <div class="gantt-wrapper">
+    <h2>Ejecución en Tiempo Real (Diagrama de Gantt)</h2>
+    <div class="gantt-container" id="ganttChart">
+      <span class="gantt-time-marker" style="left: 0;">0</span>
+    </div>
+  </div>
+
+  <div class="metrics-summary" id="finalMetrics" style="display: none;">
+    <h3>Resultado Promedio del Lote</h3>
+    <p>Tiempo de Retorno Promedio: <strong id="avgTr"></strong> unidades.</p>
+    <p>Tiempo de Espera Promedio: <strong id="avgTw"></strong>unidades.</p>
+  </div>
+</div>
+<script src="js/app.js"></script>
+
+<div>
+  <footer>
+    <a href="https://jigsaw.w3.org/css-validator/check/referer">
+      <img style="border:0;width:88px;height:31px"
+           src="https://jigsaw.w3.org/css-validator/images/vcss-blue"
+           alt="¡CSS Válido!" />
+    </a>
+  </footer>
+</div>
+
+
 
 </body>
 
