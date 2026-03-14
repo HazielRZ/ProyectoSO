@@ -1,23 +1,3 @@
-/* ==========================================================================
-   app.js — Round Robin para Taquilla Virtual
-   Basado fielmente en el Python del usuario:
-
-   Python                          →  JavaScript
-   ─────────────────────────────────────────────
-   proceso.tiempoTotal             →  c.tiempoRestante
-   tiempoEjecucion = min(q, total) →  turnoEjecucion = min(q, tiempoRestante)
-   time.sleep(1)                   →  timer de quantumTiempo segundos reales
-   cola.pop(0)                     →  cola.shift()
-   cola.append(proceso)            →  cola.push(c)
-
-   El quantum de TIEMPO es cuántos segundos reales tiene el cliente
-   para comprar sus boletos del turno. Cada segundo = 1 boleto comprado.
-   Si se acaba el tiempo antes de terminar → regresa al final.
-   ========================================================================== */
-
-// ==========================================================================
-//  ESTADO INICIAL  (equivale a los procesos del Python)
-// ==========================================================================
 let cola = [
   { id: 'Cliente-001', tiempoTotal: 5, tiempoRestante: 5 },
   { id: 'Cliente-002', tiempoTotal: 2, tiempoRestante: 2 },
@@ -65,8 +45,8 @@ const btnAgregar      = document.getElementById('btnAgregar');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 // ==========================================================================
-//  RENDER — dibuja la tabla completa
-//  freshEntry = true → anima la entrada del cliente retornado al final
+//  RENDER 
+//  freshEntry = true → animación de slide
 // ==========================================================================
 function render(freshEntry = false) {
   queueBody.innerHTML = '';
@@ -164,9 +144,6 @@ function actualizarTimerDisplay() {
 // ==========================================================================
 //  INICIAR TURNO
 //  Equivale al body del while del Python:
-//    proceso = cola.pop(0)
-//    tiempoEjecucion = min(quantum, proceso.tiempoTotal)
-//    time.sleep(...)
 // ==========================================================================
 function iniciarTurno() {
   if (cola.length === 0) { terminar(); return; }
@@ -189,7 +166,7 @@ function iniciarTurno() {
   clearInterval(intervalo);
   intervalo = setInterval(() => {
 
-    // Cada segundo real → 1 boleto comprado (equivale al time.sleep(1) del Python)
+    // Cada segundo real → 1 boleto comprado)
     if (boletosComprados < turnoEjecucion) {
       boletosComprados++;
       c.tiempoRestante--;
@@ -219,7 +196,7 @@ function iniciarTurno() {
       return;
     }
 
-    // Se acabó el tiempo — el cliente se quedó pensando
+    // Se acabó el tiempo
     if (segundosRestantes <= 0) {
       clearInterval(intervalo);
       procesarFinDeTurno(true);
@@ -228,15 +205,8 @@ function iniciarTurno() {
   }, 1000);
 }
 
-// ==========================================================================
-//  PROCESAR FIN DE TURNO
-//  Equivale al bloque if/else del Python:
-//    if proceso.tiempoTotal <= 0:  → terminó
-//    else:                         → cola.append(proceso)
-//
 //  porTimeout = true  → se acabó el tiempo → regresa al final
 //  porTimeout = false → terminó bien → continúa
-// ==========================================================================
 async function procesarFinDeTurno(porTimeout) {
   const c = cola[0];
 
@@ -332,11 +302,11 @@ function terminar() {
   timerValue.className      = '';
   timerBar.style.width      = '0%';
   clientCard.className      = 'client-card';
-  statusBadge.textContent   = 'Sistema en Reposo ⚪';
+  statusBadge.textContent   = 'Sistema en Reposo';
 
   doneBanner.style.display = 'block';
   doneBanner.textContent   =
-    `✅ Todos los clientes fueron atendidos. Tiempo global: ${tiempoGlobal} unidades.`;
+    `Todos los clientes fueron atendidos. Tiempo global: ${tiempoGlobal} unidades.`;
 
   btnIniciar.disabled    = false;
   btnIniciar.textContent = '↺ Nueva Simulación';
