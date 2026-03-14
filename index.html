@@ -1,6 +1,5 @@
 <!doctype html>
 <html class="no-js" lang="es">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,82 +7,96 @@
   <link rel="stylesheet" href="css/style.css">
   <meta name="theme-color" content="#27293d">
 </head>
-
 <body>
 <main class="admin-dashboard">
+
+  <!-- Navbar -->
   <nav class="top-navbar">
     <span class="welcome-text">Bienvenido, <strong>Admin</strong></span>
     <img src="img/Gato.jpg" alt="Perfil Admin" class="profile-pic">
   </nav>
+
+  <!-- Header -->
   <header class="dashboard-header">
     <h1>Panel de Administración: Taquilla Virtual</h1>
-    <div class="status-indicator">Sistema Activo 🔴</div>
+    <div class="status-indicator" id="statusBadge">Sistema Activo 🔴</div>
   </header>
 
+  <!-- Configuración de quantums -->
+  <div class="config-row">
+    <div class="config-group">
+      <label for="cfgQuantum">🎟 Límite de boletos por turno</label>
+      <div class="config-input-wrap">
+        <span class="unit-badge">máx/turno</span>
+        <input type="number" id="cfgQuantum" value="3" min="1" max="20">
+      </div>
+    </div>
+    <div class="config-group">
+      <label for="cfgTiempo">⏱ Tiempo para decidir y comprar</label>
+      <div class="config-input-wrap">
+        <span class="unit-badge">segundos</span>
+        <input type="number" id="cfgTiempo" value="5" min="1" max="30">
+      </div>
+    </div>
+    <button class="btn-iniciar" id="btnIniciar">▶ Iniciar Simulación</button>
+  </div>
+
   <div class="dashboard-content">
+
+    <!-- Ventanilla actual -->
     <section class="current-client-panel">
       <h2>Atendiendo en Ventanilla</h2>
-      <div class="client-card">
+      <div class="client-card" id="clientCard">
         <div class="client-info">
-          <span class="client-id">ID: Cliente-001</span>
-          <span class="client-intent">Intención de compra: 5 boletos</span>
+          <span class="client-id"     id="clientId">— Sin cliente activo —</span>
+          <span class="client-intent" id="clientIntent">Esperando inicio de simulación</span>
+          <!-- Dots de boletos comprados este turno -->
+          <div class="boletos-progress" id="boletosProgress"></div>
         </div>
-        <div class="quantum-timer">
-          Tiempo restante: <strong>3s</strong>
+        <div class="quantum-timer" id="quantumTimer">
+          Tiempo restante: <strong id="timerValue">—</strong>
+          <div class="timer-bar-wrap">
+            <div class="timer-bar" id="timerBar" style="width:100%"></div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Agregar cliente -->
+    <section class="add-section">
+      <h2>Añadir Cliente a la Fila</h2>
+      <div class="add-client-row">
+        <input type="text"   id="inNombre"  placeholder="ID Cliente (ej: Cliente-006)" maxlength="22">
+        <input type="number" id="inBoletos" placeholder="Boletos que quiere comprar" min="1" max="99">
+        <button class="btn-add" id="btnAgregar">+ Agregar</button>
+      </div>
+    </section>
+
+    <!-- Fila de espera -->
     <section class="queue-section">
       <h2>Fila de Espera</h2>
       <div class="table-container">
         <table id="queueTable">
           <thead>
-          <tr>
-            <th>Lugar en Fila</th>
-            <th>ID Cliente</th>
-            <th>Boletos Restantes por Comprar</th>
-            <th>Estado</th>
-          </tr>
+            <tr>
+              <th>Lugar en Fila</th>
+              <th>ID Cliente</th>
+              <th>Boletos Restantes por Comprar</th>
+              <th>Estado</th>
+            </tr>
           </thead>
-          <tbody>
-          <tr>
-            <td>1</td>
-            <td>Cliente-002</td>
-            <td>2</td>
-            <td><span class="status waiting">Esperando</span></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Cliente-003</td>
-            <td>8</td>
-            <td><span class="status waiting">Esperando</span></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Cliente-004</td>
-            <td>4</td>
-            <td><span class="status waiting">Esperando</span></td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Cliente-005</td>
-            <td>1</td>
-            <td><span class="status waiting">Esperando</span></td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Cliente-001</td>
-            <td>2</td>
-            <td><span class="status returned">Regresó a cola</span></td>
-          </tr>
-          </tbody>
+          <tbody id="queueBody"></tbody>
         </table>
+        <div class="empty-state" id="emptyState">No hay clientes en la fila</div>
       </div>
     </section>
-  </div>
+
+    <!-- Banner de fin -->
+    <div class="done-banner" id="doneBanner"></div>
+
+  </div><!-- /.dashboard-content -->
 </main>
+
+<script src="js/app.js"></script>
 </body>
-
 </html>
-

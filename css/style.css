@@ -1,88 +1,27 @@
 /*! HTML5 Boilerplate v9.0.1 | MIT License | https://html5boilerplate.com/ */
-
 /* main.css 3.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
 
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
-
 html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
 }
 
-/*
- * Remove text-shadow in selection highlight:
- * https://twitter.com/miketaylr/status/12228805301
- *
- * Customize the background color to match your design.
- */
-
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
-/*
- * A better looking default horizontal rule
- */
+::-moz-selection { background: #b3d4fc; text-shadow: none; }
+::selection       { background: #b3d4fc; text-shadow: none; }
 
 hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
+  display: block; height: 1px; border: 0;
+  border-top: 1px solid #ccc; margin: 1em 0; padding: 0;
 }
 
-/*
- * Remove the gap between audio, canvas, iframes,
- * images, videos and the bottom of their containers:
- * https://github.com/h5bp/html5-boilerplate/issues/440
- */
+audio, canvas, iframe, img, svg, video { vertical-align: middle; }
+fieldset { border: 0; margin: 0; padding: 0; }
+textarea { resize: vertical; }
 
-audio,
-canvas,
-iframe,
-img,
-svg,
-video {
-  vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-
-/*
- * Allow only vertical resizing of textareas.
- */
-
-textarea {
-  resize: vertical;
-}
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
 /* ==========================================================================
    Estilos Base y Tipografía
    ========================================================================== */
@@ -93,9 +32,10 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  align-items: flex-start;   /* permite scroll si hay muchos clientes */
+  min-height: 100vh;
+  padding: 20px 0;
+  overflow-y: auto;
 }
 
 /* ==========================================================================
@@ -105,7 +45,6 @@ body {
   background-color: #27293d;
   width: 95%;
   max-width: 1000px;
-  height: 85vh;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
   display: flex;
@@ -114,6 +53,32 @@ body {
   border: 1px solid #3b3d54;
 }
 
+/* ==========================================================================
+   Navbar
+   ========================================================================== */
+.top-navbar {
+  background-color: #1a1b29;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #2c2e43;
+}
+
+.welcome-text { font-size: 0.95rem; color: #c5c6d0; letter-spacing: 1px; }
+.welcome-text strong { color: #ffffff; }
+
+.profile-pic {
+  width: 45px; height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 8px rgba(252, 195, 255, 0.4);
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
 .dashboard-header {
   background-color: #1f2030;
   padding: 20px 30px;
@@ -141,6 +106,84 @@ body {
 }
 
 /* ==========================================================================
+   Configuración de Quantums  (nuevo — mínimo)
+   ========================================================================== */
+.config-row {
+  background-color: #1a1b29;
+  padding: 14px 30px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  border-bottom: 1px solid #2c2e43;
+}
+
+.config-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.config-group label {
+  font-size: 0.72rem;
+  color: #a3a5be;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.config-input-wrap {
+  display: flex;
+  background-color: #27293d;
+  border: 1px solid #3b3d54;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+
+.config-input-wrap:focus-within {
+  border-color: #e14eca;
+}
+
+.unit-badge {
+  padding: 8px 10px;
+  background-color: rgba(225, 78, 202, 0.1);
+  color: #e14eca;
+  font-size: 0.75rem;
+  border-right: 1px solid #3b3d54;
+  white-space: nowrap;
+}
+
+.config-input-wrap input {
+  flex: 1; width: 55px;
+  background: transparent; border: none; outline: none;
+  color: #fff; font-size: 1rem; font-weight: 700;
+  padding: 8px 10px; -moz-appearance: textfield;
+}
+
+.config-input-wrap input::-webkit-outer-spin-button,
+.config-input-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.btn-iniciar {
+  padding: 9px 24px;
+  background-color: #e14eca;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity .2s, transform .1s;
+  white-space: nowrap;
+  align-self: flex-end;
+}
+
+.btn-iniciar:disabled          { opacity: 0.4; cursor: not-allowed; }
+.btn-iniciar:not(:disabled):hover  { opacity: 0.85; }
+.btn-iniciar:not(:disabled):active { transform: scale(0.97); }
+
+/* ==========================================================================
    Secciones Internas
    ========================================================================== */
 .dashboard-content {
@@ -149,7 +192,6 @@ body {
   flex-direction: column;
   gap: 25px;
   flex: 1;
-  overflow: hidden;
 }
 
 h2 {
@@ -159,35 +201,10 @@ h2 {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.top-navbar {
-  background-color: #1a1b29;
-  padding: 10px 30px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 15px;
-  border-bottom: 1px solid #2c2e43;
-}
 
-.welcome-text {
-  font-size: 0.95rem;
-  color: #c5c6d0;
-  letter-spacing: 1px;
-}
-
-.welcome-text strong {
-  color: #ffffff;
-}
-
-.profile-pic {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  object-fit: cover ;
-  box-shadow: 0 0 8px rgba(252, 195, 255, 0.4);
-
-}
-/* Panel del Cliente Actual */
+/* ==========================================================================
+   Panel del Cliente Actual
+   ========================================================================== */
 .client-card {
   background: linear-gradient(135deg, #0098f0, #00f2fe);
   padding: 20px 25px;
@@ -195,8 +212,17 @@ h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
   box-shadow: 0 4px 15px rgba(0, 152, 240, 0.3);
   color: #ffffff;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+
+/* Flash rojo cuando se acaba el tiempo */
+.client-card.timeout {
+  background: linear-gradient(135deg, #7b1a1a, #c1121f);
+  box-shadow: 0 4px 15px rgba(193, 18, 31, 0.4);
 }
 
 .client-info {
@@ -205,23 +231,123 @@ h2 {
   gap: 8px;
 }
 
-.client-id {
-  font-size: 1.4rem;
-  font-weight: bold;
+.client-id     { font-size: 1.4rem; font-weight: bold; }
+.client-intent { font-size: 1rem; opacity: 0.9; }
+
+/* Dots de boletos — uno por cada boleto del turno */
+.boletos-progress {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 4px;
 }
 
-.client-intent {
-  font-size: 1rem;
-  opacity: 0.9;
+.boleto-dot {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  border: 1.5px solid rgba(255,255,255,0.55);
+  transition: background 0.2s, border-color 0.2s;
 }
 
+.boleto-dot.comprado {
+  background: rgba(255,255,255,0.95);
+  border-color: rgba(255,255,255,0.95);
+}
+
+/* Timer */
 .quantum-timer {
   background-color: rgba(0, 0, 0, 0.25);
   padding: 12px 24px;
   border-radius: 6px;
   font-size: 1.2rem;
   font-variant-numeric: tabular-nums;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 170px;
 }
+
+.quantum-timer strong {
+  font-size: 1.8rem;
+  line-height: 1;
+  transition: color 0.3s;
+}
+
+.quantum-timer strong.warn   { color: #ffca28; }
+.quantum-timer strong.danger {
+  color: #ff6b6b;
+  animation: tick-shake 0.12s infinite alternate;
+}
+
+@keyframes tick-shake {
+  0%   { transform: translateX(-1.5px); }
+  100% { transform: translateX(1.5px);  }
+}
+
+/* Barra de progreso del timer */
+.timer-bar-wrap {
+  width: 100%;
+  height: 5px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.timer-bar {
+  height: 100%;
+  background: rgba(255,255,255,0.85);
+  border-radius: 3px;
+  transition: width 0.95s linear;
+}
+
+.timer-bar.danger { background: #ff6b6b; }
+
+/* ==========================================================================
+   Agregar Cliente  (nuevo — mínimo)
+   ========================================================================== */
+.add-section { /* sin cambios extra, usa gap del content */ }
+
+.add-client-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.add-client-row input {
+  flex: 1; min-width: 130px;
+  background-color: #1f2030;
+  border: 1px solid #3b3d54;
+  border-radius: 6px;
+  color: #e8e8ee;
+  font-size: 0.95rem;
+  padding: 9px 14px;
+  outline: none;
+  transition: border-color .2s;
+  -moz-appearance: textfield;
+}
+
+.add-client-row input:focus { border-color: #e14eca; }
+
+.add-client-row input::-webkit-outer-spin-button,
+.add-client-row input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.btn-add {
+  padding: 9px 22px;
+  background-color: #3b3d54;
+  color: #e8e8ee;
+  border: 1px solid #5b5d7a;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background .2s;
+  white-space: nowrap;
+}
+
+.btn-add:hover { background-color: #4e506e; }
 
 /* ==========================================================================
    Tabla y Contenedor Fijo
@@ -230,15 +356,14 @@ h2 {
   display: flex;
   flex-direction: column;
   flex: 1;
-  overflow: hidden;
 }
 
 .table-container {
-  flex: 1;
-  overflow-y: auto; /* Permite el scroll interno si hay muchos procesos */
+  overflow-y: auto;
   background-color: #1f2030;
   border-radius: 8px;
   border: 1px solid #3b3d54;
+  max-height: 300px;
 }
 
 table {
@@ -264,11 +389,12 @@ td {
   color: #c5c6d0;
 }
 
-tbody tr:hover {
-  background-color: #27293d;
-}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background-color: #27293d; }
 
-/* Estados */
+/* ==========================================================================
+   Estados de la tabla
+   ========================================================================== */
 .status {
   padding: 4px 10px;
   border-radius: 4px;
@@ -281,224 +407,119 @@ tbody tr:hover {
   color: #4caf50;
 }
 
+.status.serving {
+  background-color: rgba(0, 152, 240, 0.15);
+  color: #00b4d8;
+}
+
 .status.returned {
   background-color: rgba(255, 152, 0, 0.15);
   color: #ff9800;
-}
-/* Estilos del Diagrama de Gantt y Animación */
-.gantt-container {
-  display: flex;
-  width: 100%;
-  height: 70px;
-  border-radius: 6px;
-  background-color: #94a9c3;
-  position: relative;
-  overflow: visible;
-  border: 3px solid #95aac4;
+  border: 1px solid rgba(255, 152, 0, 0.35);
+  animation: pill-pop 0.4s ease-out both;
 }
 
-.gantt-block {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #e8e8ee;
-  font-weight: bold;
-  font-size: 1.2rem;
-  position: relative;
-  width: 0;
-  opacity: 0;
-  transition: width 0.8s ease-in-out, opacity 0.5s ease-in;
-  white-space: nowrap;
-  overflow: hidden;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
-}
+/* Fila retornada: fondo naranja muy tenue + borde izquierdo */
+tr.was-returned td             { background-color: rgba(255, 152, 0, 0.04); }
+tr.was-returned td:first-child { border-left: 3px solid #ff9800; }
 
-
-.gantt-block.animate-grow {
-  opacity: 1;
-}
-
-.gantt-time-marker {
-  position: absolute;
-  bottom: -30px;
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #768595;
-  transform: translateX(-50%);
-}
-
-.metrics-summary {
-  text-shadow: 1px 1px 1px #2a292c;
-  margin-top: 2rem;
-  background-color: #d7dbe4;
-  padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 5px solid #768595;
-}
-
-footer{
-  margin: 2rem 0;
-  text-align: center;
-}
 /* ==========================================================================
-   Helper classes
+   Animaciones de filas
    ========================================================================== */
 
-/*
- * Hide visually and from screen readers
- */
+/* Flash azul — nuevo cliente en ventanilla */
+@keyframes flash-blue {
+  0%   { background-color: rgba(0, 152, 240, 0.18); }
+  100% { background-color: transparent; }
+}
+.row-flash td { animation: flash-blue 1s ease-out forwards; }
 
-.hidden,
-[hidden] {
-  display: none !important;
+/* Entrada desde la derecha — cliente mandado al final */
+@keyframes slide-in-right {
+  0%   { transform: translateX(70px); opacity: 0; }
+  100% { transform: translateX(0);    opacity: 1; }
+}
+.row-entering td { animation: slide-in-right 0.38s ease-out forwards; }
+
+/* Pop de la píldora naranja */
+@keyframes pill-pop {
+  0%   { transform: scale(0.7); opacity: 0; }
+  65%  { transform: scale(1.15); }
+  100% { transform: scale(1);    opacity: 1; }
 }
 
-/*
- * Hide only visually, but have it available for screen readers:
- * https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
- *
- * 1. For long content, line feeds are not interpreted as spaces and small width
- *    causes content to wrap 1 word per line:
- *    https://medium.com/@jessebeach/beware-smushed-off-screen-accessible-text-5952a4c2cbfe
- */
+/* Salida verde — cliente que terminó todos sus boletos */
+@keyframes row-done-anim {
+  0%   { background-color: rgba(76, 175, 80, 0.2); opacity: 1; }
+  100% { background-color: rgba(76, 175, 80, 0.2); opacity: 0; }
+}
+.row-done td { animation: row-done-anim 0.42s ease-out forwards; }
+
+/* ==========================================================================
+   Estado vacío y banner de fin
+   ========================================================================== */
+.empty-state {
+  display: none;
+  text-align: center;
+  padding: 28px;
+  color: #a3a5be;
+  font-size: 0.9rem;
+}
+
+.done-banner {
+  display: none;
+  background-color: #1a2e22;
+  border: 1px solid #2d6a4f;
+  border-radius: 8px;
+  padding: 14px 20px;
+  color: #b7e4c7;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+/* ==========================================================================
+   Helper classes (HTML5 Boilerplate)
+   ========================================================================== */
+.hidden, [hidden] { display: none !important; }
 
 .visually-hidden {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  /* 1 */
+  border: 0; clip: rect(0,0,0,0); height: 1px; margin: -1px;
+  overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px;
 }
-
-/*
- * Extends the .visually-hidden class to allow the element
- * to be focusable when navigated to via the keyboard:
- * https://www.drupal.org/node/897638
- */
 
 .visually-hidden.focusable:active,
 .visually-hidden.focusable:focus {
-  clip: auto;
-  height: auto;
-  margin: 0;
-  overflow: visible;
-  position: static;
-  white-space: inherit;
-  width: auto;
+  clip: auto; height: auto; margin: 0; overflow: visible;
+  position: static; white-space: inherit; width: auto;
 }
 
-/*
- * Hide visually and from screen readers, but maintain layout
- */
+.invisible { visibility: hidden; }
 
-.invisible {
-  visibility: hidden;
-}
-
-/*
- * Clearfix: contain floats
- *
- * The use of `table` rather than `block` is only necessary if using
- * `::before` to contain the top-margins of child elements.
- */
-
-.clearfix::before,
-.clearfix::after {
-  content: "";
-  display: table;
-}
-
-.clearfix::after {
-  clear: both;
-}
+.clearfix::before, .clearfix::after { content: ""; display: table; }
+.clearfix::after { clear: both; }
 
 /* ==========================================================================
-   EXAMPLE Media Queries for Responsive Design.
-   These examples override the primary ('mobile first') styles.
-   Modify as content requires.
+   Media Queries
    ========================================================================== */
-
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
-}
+@media only screen and (min-width: 35em) { }
 
 @media print,
   (-webkit-min-device-pixel-ratio: 1.25),
   (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
-  /* Style adjustments for high resolution devices */
-}
-
-/* ==========================================================================
-   Print styles.
-   Inlined to avoid the additional HTTP request:
-   https://www.phpied.com/delay-loading-your-print-css/
-   ========================================================================== */
+  (min-resolution: 120dpi) { }
 
 @media print {
-  *,
-  *::before,
-  *::after {
-    background: #fff !important;
-    color: #000 !important;
-    /* Black prints faster */
-    box-shadow: none !important;
-    text-shadow: none !important;
+  *, *::before, *::after {
+    background: #fff !important; color: #000 !important;
+    box-shadow: none !important; text-shadow: none !important;
   }
-
-  a,
-  a:visited {
-    text-decoration: underline;
-  }
-
-  a[href]::after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]::after {
-    content: " (" attr(title) ")";
-  }
-
-  /*
-   * Don't show links that are fragment identifiers,
-   * or use the `javascript:` pseudo protocol
-   */
-  a[href^="#"]::after,
-  a[href^="javascript:"]::after {
-    content: "";
-  }
-
-  pre {
-    white-space: pre-wrap !important;
-  }
-
-  pre,
-  blockquote {
-    border: 1px solid #999;
-    page-break-inside: avoid;
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  p,
-  h2,
-  h3 {
-    orphans: 3;
-    widows: 3;
-  }
-
-  h2,
-  h3 {
-    page-break-after: avoid;
-  }
+  a, a:visited { text-decoration: underline; }
+  a[href]::after { content: " (" attr(href) ")"; }
+  abbr[title]::after { content: " (" attr(title) ")"; }
+  a[href^="#"]::after, a[href^="javascript:"]::after { content: ""; }
+  pre { white-space: pre-wrap !important; }
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
 }
-
